@@ -24,8 +24,18 @@ struct ProfileView: View {
             
             VStack(spacing: 20) {
                 
+//                ZStack {
+//                    Image("avatar")
+//                        .resizable()
+//                        .scaledToFill()
+//                        .frame(width: 120, height: 120)
+//                        .clipShape(Circle())
+//                        .shadow(color: .black, radius: 10, x: 0, y: 10)
+//                }
+//                .padding(.top, 50)
+                
                 ZStack {
-                    Image("avatar")
+                    Image("person")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 120, height: 120)
