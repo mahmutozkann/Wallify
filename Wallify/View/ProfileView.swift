@@ -35,7 +35,7 @@ struct ProfileView: View {
 //                .padding(.top, 50)
                 
                 ZStack {
-                    Image("person.fill")
+                    Image("person")
                         .resizable()
                         .scaledToFill()
                         .frame(width: 120, height: 120)
