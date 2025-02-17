@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+let categories: [(key: String, value: String)] = [
+    ("cart", "Shopping"),
+    ("party.popper", "Social"),
+    ("bus", "Transportation"),
+    ("fork.knife", "Food"),
+    ("gamecontroller", "Games"),
+    ("ellipsis", "Other")
+]

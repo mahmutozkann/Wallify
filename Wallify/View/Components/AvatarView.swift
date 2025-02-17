@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct AvatarView: View {
+    @State var name: String
+    @State var size: CGFloat = 50
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        Image(name)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(width: size, height: size)
+            .cornerRadius(size / 2)
+            .shadow(radius: 10)
+        
     }
 }
 
 #Preview {
-    AvatarView()
+    AvatarView(name: "avatar")
 }

@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct AvatarIconView: View {
+    @State var name: String
+    let size: CGFloat = 70
+    var action : () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button (action: action){
+
+            Image(systemName: name)
+                .frame(width: 52, height: 52)
+                .foregroundStyle(.black)
+                .overlay{
+                    RoundedRectangle(cornerRadius: 15)
+                        .strokeBorder(style: StrokeStyle(lineWidth: 1, dash: [8]))
+                        .foregroundStyle(.black)
+                }
+        }
     }
 }
 
+
 #Preview {
-    AvatarIconView()
+    AvatarIconView(name: "fork.knife", action: customFunc)
 }

@@ -6,12 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
+
+
+
 
 @main
 struct WallifyApp: App {
+    
+    init(){
+        FirebaseApp.configure()
+    }
+    
+    @StateObject private var session = SessionManager()
+    @AppStorage("isLoggedIn") var isLoggedIn = false
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                MyTabView()
+            }else{
+                SplashView()
+                    .environmentObject(session)
+            }
         }
     }
 }
