@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct DailyExpense: Identifiable {
+    let id = UUID()
+    let day: String
+    let amount: Double
+}

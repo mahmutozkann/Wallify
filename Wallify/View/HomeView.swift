@@ -8,10 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var totalExpenses: Double = 9876.33
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack (spacing: 20){
+                    
+                    //total expenses
+                    TotalExpenseCard(amount: totalExpenses)
+                    
+                    //categorized expenses horizontally
+                    HorizontalHistoryView()
+                    
+                    //weekly chart
+                    MyChartView()
+                    
+                }
+            }
+            .navigationTitle("Expenses")
+        }
+        .navigationBarBackButtonHidden(true)
     }
 }
+
+
+
+
+
 
 #Preview {
     HomeView()
