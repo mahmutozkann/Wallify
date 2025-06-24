@@ -51,7 +51,7 @@ struct AddCategoryView: View {
                     Spacer()
                 }
                 .padding()
-                .navigationTitle("New Category")
+                .navigationTitle("#New Category")
                 .sheet(isPresented: $isIconPickerPresented) {
                     SFIconPickerView(icons: availableIcons, selectedIcon: $iconName)
                 }
