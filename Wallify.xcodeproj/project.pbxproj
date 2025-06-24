@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04947A662DBC26EC000092B8 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 04947A652DBC26EC000092B8 /* Neumorphic */; };
 		04BFC3F12D2AC331007F0AFD /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 04BFC3F02D2AC331007F0AFD /* FirebaseAnalytics */; };
 		04BFC3F32D2AC331007F0AFD /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 04BFC3F22D2AC331007F0AFD /* FirebaseAnalyticsOnDeviceConversion */; };
 		04BFC3F52D2AC331007F0AFD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 04BFC3F42D2AC331007F0AFD /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -68,6 +69,7 @@
 				04BFC3F92D2AC331007F0AFD /* FirebaseAppDistribution-Beta in Frameworks */,
 				04BFC3F52D2AC331007F0AFD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				04BFC40F2D2AC331007F0AFD /* FirebaseInAppMessaging-Beta in Frameworks */,
+				04947A662DBC26EC000092B8 /* Neumorphic in Frameworks */,
 				04BFC3FD2D2AC331007F0AFD /* FirebaseAuthCombine-Community in Frameworks */,
 				04BFC4012D2AC331007F0AFD /* FirebaseCrashlytics in Frameworks */,
 				04BFC4132D2AC331007F0AFD /* FirebaseMLModelDownloader in Frameworks */,
@@ -140,6 +142,7 @@
 				04BFC41A2D2AC331007F0AFD /* FirebaseStorage */,
 				04BFC41C2D2AC331007F0AFD /* FirebaseStorageCombine-Community */,
 				04BFC41E2D2AC331007F0AFD /* FirebaseVertexAI */,
+				04947A652DBC26EC000092B8 /* Neumorphic */,
 			);
 			productName = Wallify;
 			productReference = 04FB8DAA2D18185A00E90FBB /* Wallify.app */;
@@ -171,6 +174,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				04BFC3EF2D2AC331007F0AFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				04947A642DBC26EC000092B8 /* XCRemoteSwiftPackageReference "neumorphic" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 04FB8DAB2D18185A00E90FBB /* Products */;
@@ -404,6 +408,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04947A642DBC26EC000092B8 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic/";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		04BFC3EF2D2AC331007F0AFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -415,6 +427,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		04947A652DBC26EC000092B8 /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04947A642DBC26EC000092B8 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
+		};
 		04BFC3F02D2AC331007F0AFD /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 04BFC3EF2D2AC331007F0AFD /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

@@ -1,81 +1,80 @@
 import SwiftUI
+import Neumorphic
 
 struct MyTabView: View {
     @State private var selectedIndex: Int = 0
     
+    private let items: [(icon: String, title: String)] = [
+        ("house", "Home"),
+        ("wallet.bifold", "Wallet"),
+        ("plus.app", "Add Expense"),
+        ("chart.pie", "Chart"),
+        ("person.crop.square", "Profile")
+    ]
+    
     init() {
-        // Tab bar için background özelleştirmesi
-        UITabBar.appearance().backgroundColor = UIColor.clear
-        UITabBar.appearance().isTranslucent = true
+        // Sistem TabBar’ı gizle
+        UITabBar.appearance().isHidden = true
     }
     
     var body: some View {
         ZStack {
-            
-            LinearGradient(
-                gradient: Gradient(colors: [Color.white, Color.gray.opacity(0.2)]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .ignoresSafeArea()
-            
-            // TabView
+            // ------------ İçerik Bölümü ------------
             TabView(selection: $selectedIndex) {
-                Group {
-                    HomeView()
-                        .tabItem {
-                            Label("Home", systemImage: "house")
-                        }
-                        .tag(0)
-                    
-                    WalletView()
-                        .tabItem {
-                            Label("Wallet", systemImage: "wallet.bifold")
-                        }
-                        .tag(1)
-                    
-                    AddExpenseView()
-                        .tabItem {
-                            Label("Add Expense", systemImage: "plus.app")
-                        }
-                        .tag(2)
-                    
-                    PieChartView()
-                        .tabItem {
-                            Label("Chart", systemImage: "chart.pie")
-                        }
-                        .tag(3)
-                    
-                    ProfileView(viewModel: UserViewModel())
-                        .tabItem {
-                            Label("Profile", systemImage: "person.crop.square")
-                        }
-                        .tag(4)
-                }
+                HomeView(selectedIntex: $selectedIndex)
+                    .tag(0)
+                WalletView(selectedIndex: $selectedIndex)
+                    .tag(1)
+                AddExpenseView(selectedIndex: $selectedIndex)
+                    .tag(2)
+                ChartsView(selectedIndex: $selectedIndex)
+                    .tag(3)
+                ProfileView(viewModel: UserViewModel(), selectedIndex: $selectedIndex)
+                    .tag(4)
             }
-            .tint(.myBlue)
-            .background(
-                BlurView(style: .systemMaterial) // Bulanık arka plan
-                    .ignoresSafeArea(edges: .bottom) // Alt kısımdaki tab bar için uygular
-            )
+            
+            // ------------ Özel TabBar ------------
+            VStack {
+                Spacer()
+                
+                HStack(spacing: 0) {
+                    ForEach(items.indices, id: \.self) { idx in
+                        let item = items[idx]
+                        Button(action: {
+                            selectedIndex = idx
+                            let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+                             impactFeedback.impactOccurred()
+                        }) {
+                            VStack(spacing: 4) {
+                                Image(systemName: item.icon)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 24, height: 24)
+                                if !item.title.isEmpty {
+                                    Text(item.title)
+                                        .font(.caption2)
+                                }
+                            }
+                            .foregroundStyle(selectedIndex == idx ? .purple : .gray)
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)// ← Figma’daki boyut
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color("bgColor"))
+                        .softOuterShadow()
+                )
+                .padding(.horizontal)
+                .padding(.bottom, 20)                                    // home-indicator üstüne boşluk
+            }
+            .ignoresSafeArea(edges: .bottom)
         }
     }
 }
 
 #Preview {
     MyTabView()
-}
-
-/// Blur efektini sağlayan SwiftUI görünümü
-struct BlurView: UIViewRepresentable {
-    var style: UIBlurEffect.Style
-
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        let view = UIVisualEffectView(effect: UIBlurEffect(style: style))
-        return view
-    }
-
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        uiView.effect = UIBlurEffect(style: style)
-    }
 }

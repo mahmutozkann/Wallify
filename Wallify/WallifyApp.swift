@@ -19,15 +19,10 @@ struct WallifyApp: App {
     }
     
     @StateObject private var session = SessionManager()
-    @AppStorage("isLoggedIn") var isLoggedIn = false
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
-                MyTabView()
-            }else{
-                SplashView()
-                    .environmentObject(session)
-            }
+            SplashView()
+                .environmentObject(session)
         }
     }
 }

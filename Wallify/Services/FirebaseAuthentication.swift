@@ -21,7 +21,8 @@ func register(email: String, password: String, name: String, surname: String, co
                 "name": name,
                 "surname": surname,
                 "email": email,
-                "createdAt": Date()
+                "createdAt": Date(),
+                "totalBalance": 0.0
             ]){ error in
                 if let error = error {
                     print("Firestore save error: \(error.localizedDescription)")
@@ -41,6 +42,18 @@ func signIn(email: String, password: String, completion: @escaping (Bool) -> Voi
             print(error!.localizedDescription)
             completion(false)
         }else{
+            completion(true)
+        }
+    }
+}
+
+func signInAsGuest(completion: @escaping (Bool) -> Void) {
+    Auth.auth().signInAnonymously { authResult, error in
+        if let error = error {
+            print("Anonim giriş başarısız: \(error.localizedDescription)")
+            completion(false)
+        } else {
+            print("Anonim kullanıcı ID: \(authResult?.user.uid ?? "bilinmiyor")")
             completion(true)
         }
     }
